@@ -44,6 +44,6 @@ export class InputField {
    */
   validateField (input) {
     this.#valid = this.#validation.isValid(input).valid
-    this.updateUI(this.#valid)
+    this.updateUI()
   }
 }

@@ -8,6 +8,6 @@ export class Animation {
    * @param valid
    */
   changeBackGroundColor (valid) {
-    return valid ? 'lightgreen' : 'white'
+    return valid ? 'lightgreen' : '#e09b9b'
   }
 }
