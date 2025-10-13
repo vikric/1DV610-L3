@@ -35,7 +35,8 @@ export class InputField {
    *
    */
   updateUI () {
-    this.getInputField().style.background = this.#animation.changeBackGroundColor(this.#valid)
+    const field = this.getInputField()
+    field.style.background = this.#animation.changeBackGroundColor(this.#valid)
   }
 
   /**
