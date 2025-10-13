@@ -1,0 +1,56 @@
+
+  header {
+    border-bottom: 1px solid black;
+  }
+
+  .header {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    min-height: 75px;
+
+  }
+
+  .login {
+    color: black;
+    padding: 8px 14px;
+    border-radius: 10px;
+    text-decoration: none;
+    background-color: rgb(197, 197, 197);
+  }
+
+  .container {
+    display: grid;
+  }
+
+  #fields {
+    display: grid;
+    grid-template-columns: 2fr 4fr 2fr;
+  }
+
+  .inputs {
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  .inputs input {
+    padding: 15px;
+    border-radius: 12px;
+  }
+
+  .info {
+    border-radius: 12px;
+    border: 1px solid black;
+    box-shadow: 0 3px 10px rgba(16,24,40,0.02);
+    text-align: center;
+  }
+
+  footer {
+    display: flex;
+    justify-content: c;
+    gap: 20px;
+
+  }
+
+
