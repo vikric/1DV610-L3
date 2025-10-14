@@ -1,15 +1,16 @@
-import { Animation } from './animation.js'
 import { Validation } from './validation.js'
+import { AnimationController } from './animationController.js'
+import { DOMListener } from './domListener.js'
 
 /**
  *
  */
 export class InputField {
-  #animation
   #valid
   #validation
   #inputID
   #startColor
+  #animationController
   /**
    * Represents an input field with validation.
    *
@@ -19,11 +20,11 @@ export class InputField {
     if (!inputID) {
       throw new TypeError('Missing ID')
     }
-
-    this.#animation = new Animation()
-    this.#validation = new Validation()
     this.#inputID = inputID
+    this.#validation = new Validation()
+    this.domListener = new DOMListener()
 
+    this.getStartColor()
     this.#startListenerEvent()
   }
 
@@ -31,9 +32,8 @@ export class InputField {
    * Initializes the input listener for the input field.
    */
   #startListenerEvent () {
-    this.getStartColor()
-    document.querySelector('#' + this.#inputID).addEventListener('input', (input) => {
-      this.#validateField(input)
+    this.domListener.createListener(this.#inputID, (event) => {
+      this.#validateField(event)
     })
   }
 
@@ -41,8 +41,8 @@ export class InputField {
    *
    */
   getStartColor () {
-    // https://stackoverflow.com/questions/1887104/how-to-get-the-background-color-of-an-html-element
     this.#startColor = getComputedStyle(document.querySelector('#' + this.#inputID)).backgroundColor
+    this.#animationController = new AnimationController(this.#startColor)
   }
 
   /**
@@ -64,9 +64,7 @@ export class InputField {
    */
   #updateUI () {
     const field = this.getInputField()
-    field.style.backgroundColor = field.value.length === 0
-      ? this.#startColor
-      : field.style.background = this.#animation.changeBackGroundColor(this.#valid)
+    this.#animationController.activateBackgroundColor(field, this.#valid)
   }
 
   /**
