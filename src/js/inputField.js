@@ -1,5 +1,5 @@
 import { Validation } from './validation.js'
-import { AnimationController } from './animationController.js'
+import { AnimationController } from './animation/animationController.js'
 import { DOMListener } from './domListener.js'
 
 /**

@@ -1,4 +1,3 @@
-import { DOMListener } from '../domListener'
 /**
  *
  */
@@ -9,7 +8,6 @@ export class Logger {
    *
    */
   constructor () {
-    this.domListener = new DOMListener()
     this.startListener()
   }
 
@@ -17,11 +15,10 @@ export class Logger {
    *
    */
   startListener () {
-    this.domListener.createCustomListener('validField', this.updateCounter.bind(this))
-    /*     document.addEventListener('validField', (e) => {
+    document.addEventListener('validField', (e) => {
       console.log(e.detail.fieldID)
       this.updateCounter()
-    }) */
+    })
   }
 
   /**
@@ -36,14 +33,13 @@ export class Logger {
    *
    */
   sendCounterUpdatedEvent () {
-    this.domListener.createCustomEvent('counterUpdated', { value: this.#counter })
-    /*     const event = new CustomEvent('counterUpdated', {
+    const event = new CustomEvent('counterUpdated', {
 
       detail: {
         counter: this.#counter
       }
     })
-    document.dispatchEvent(event) */
+    document.dispatchEvent(event)
   }
 
   /**
