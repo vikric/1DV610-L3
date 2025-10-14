@@ -1,6 +1,6 @@
-import { Animation } from './animation'
-import { Validation } from './validation'
-import { loggerInstance } from './loggerInstance'
+import { Animation } from './animation.js'
+import { Validation } from './validation.js'
+
 /**
  *
  */
@@ -8,6 +8,7 @@ export class InputField {
   #animation
   #valid
   #validation
+  #inputID
   /**
    *
    * @param inputID
@@ -18,18 +19,31 @@ export class InputField {
     }
     this.#animation = new Animation()
     this.#validation = new Validation()
+    this.#inputID = inputID
 
-    this.inputID = inputID
-    document.querySelector('#' + inputID).addEventListener('input', (input) => {
+    this.startListener()
+  }
+
+  /**
+   *
+   */
+  startListener () {
+    document.querySelector('#' + this.#inputID).addEventListener('input', (input) => {
       this.validateField(input)
     })
   }
 
   /**
    *
+   * @param input
    */
-  getInputField () {
-    return document.querySelector('#' + this.inputID)
+  validateField (input) {
+    this.#valid = this.#validation.isValid(input).valid
+
+    this.updateUI()
+    if (this.#valid) {
+      this.sendUpdateEvent()
+    }
   }
 
   /**
@@ -42,29 +56,22 @@ export class InputField {
 
   /**
    *
-   * @param input
    */
-  validateField (input) {
-    this.#valid = this.#validation.isValid(input).valid
-
-    this.updateUI()
-    if (this.#valid) {
-      this.updateCounter()
-    }
+  getInputField () {
+    return document.querySelector('#' + this.#inputID)
   }
 
   /**
    *
    */
-  updateCounter () {
-    loggerInstance.updateCounter()
-    this.updateLogger()
-  }
+  sendUpdateEvent () {
+    const event = new CustomEvent('validField', {
 
-  /**
-   *
-   */
-  updateLogger () {
-    document.querySelector('.logger').textContent = loggerInstance.getCounter()
+      detail: {
+        fieldID: this.#inputID,
+        isValid: this.#valid
+      }
+    })
+    document.dispatchEvent(event)
   }
 }

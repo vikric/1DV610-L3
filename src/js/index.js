@@ -1,7 +1,9 @@
 import { InputField } from './inputField'
+import { loggerInstance } from './logger/loggerInstance'
+import { LoggerDisplay } from './logger/loggerDisplay'
 
-/* const logger = document.querySelector('.logger').textContent
-console.log(logger) */
+const logger = document.querySelector('.logger')
+
 const personalNumber = new InputField('PersonalNumber')
 const date = new InputField('Date')
 const phoneNumber = new InputField('PhoneNumber')
@@ -13,3 +15,4 @@ date.getInputField()
 phoneNumber.getInputField()
 email.getInputField()
 password.getInputField()
+const log = new LoggerDisplay(loggerInstance, logger)
