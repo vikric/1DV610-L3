@@ -1,5 +1,7 @@
 import { InputField } from './inputField'
 
+/* const logger = document.querySelector('.logger').textContent
+console.log(logger) */
 const personalNumber = new InputField('PersonalNumber')
 const date = new InputField('Date')
 const phoneNumber = new InputField('PhoneNumber')

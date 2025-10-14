@@ -1,12 +1,12 @@
 import { Animation } from './animation'
 import { Validation } from './validation'
+import { loggerInstance } from './loggerInstance'
 /**
  *
  */
 export class InputField {
   #animation
   #valid
-
   #validation
   /**
    *
@@ -18,6 +18,7 @@ export class InputField {
     }
     this.#animation = new Animation()
     this.#validation = new Validation()
+
     this.inputID = inputID
     document.querySelector('#' + inputID).addEventListener('input', (input) => {
       this.validateField(input)
@@ -45,6 +46,25 @@ export class InputField {
    */
   validateField (input) {
     this.#valid = this.#validation.isValid(input).valid
+
     this.updateUI()
+    if (this.#valid) {
+      this.updateCounter()
+    }
+  }
+
+  /**
+   *
+   */
+  updateCounter () {
+    loggerInstance.updateCounter()
+    this.updateLogger()
+  }
+
+  /**
+   *
+   */
+  updateLogger () {
+    document.querySelector('.logger').textContent = loggerInstance.getCounter()
   }
 }
