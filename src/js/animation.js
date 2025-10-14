@@ -2,6 +2,8 @@
  *
  */
 export class Animation {
+  startColor
+
   /**
    * @private
    * @type {{ valid: string, invalid: string }}

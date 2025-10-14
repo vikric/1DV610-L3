@@ -16,7 +16,7 @@ export class Logger {
    */
   startListener () {
     document.addEventListener('validField', (e) => {
-      console.log(e.detail.isValid)
+      console.log(e.detail.fieldID)
       this.updateCounter()
     })
   }

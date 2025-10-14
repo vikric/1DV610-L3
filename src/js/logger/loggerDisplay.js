@@ -12,7 +12,7 @@ export class LoggerDisplay {
    */
   constructor (logInstance, displayElement) {
     if (!logInstance || !displayElement) {
-      throw new Error('Missing argument')
+      throw new Error('Missing arguement')
     }
     this.#logInstance = logInstance
     this.#displayElement = displayElement
