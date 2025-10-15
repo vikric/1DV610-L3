@@ -38,7 +38,7 @@ export class InputField {
   }
 
   /**
-   *
+   * Gets the initial color from the field.
    */
   getStartColor () {
     this.#startColor = getComputedStyle(document.querySelector('#' + this.#inputID)).backgroundColor
@@ -64,7 +64,10 @@ export class InputField {
    */
   #updateUI () {
     const field = this.getInputField()
-    this.#animationController.activateBackgroundColor(field, this.#valid)
+    if (this.#valid) {
+      return this.#animationController.activateValidBackgroundColor(field)
+    }
+    return this.#animationController.activateInvalidBackgroundColor(field)
   }
 
   /**

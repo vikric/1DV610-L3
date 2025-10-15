@@ -14,13 +14,21 @@ export class Animation {
   }
 
   /**
-   * Returns the appropriate background color based on validation state.
+   * Returns the valid color string.
    *
-   * @param {boolean} valid - Whether the state is valid or invalid.
-   * @returns {string} The color string for the given validation state.
+   * @returns {string} The valid color string.
    */
-  changeBackGroundColor (valid) {
-    return valid ? this.#color.valid : this.#color.invalid
+  getValidBackGroundColor () {
+    return this.#color.valid
+  }
+
+  /**
+   * Returns the invalid color string.
+   *
+   * @returns {string} The invalid color string.
+   */
+  getInvalidBackGroundColor () {
+    return this.#color.invalid
   }
 
   /**

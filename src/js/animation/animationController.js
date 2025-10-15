@@ -18,11 +18,35 @@ export class AnimationController {
   /**
    *
    * @param field
-   * @param valid
+   * @param state
    */
-  activateBackgroundColor (field, valid) {
-    field.style.backgroundColor = field.value.length === 0
-      ? this.#startColor
-      : field.style.background = this.#animation.changeBackGroundColor(valid)
+  #applyColor (field, state) {
+    if (field.value.length === 0) {
+      field.style.backgroundColor = this.#startColor
+      return
+    }
+
+    const colors = {
+      valid: this.#animation.getValidBackGroundColor(),
+      invalid: this.#animation.getInvalidBackGroundColor()
+    }
+
+    field.style.background = colors[state]
+  }
+
+  /**
+   *
+   * @param field
+   */
+  activateValidBackgroundColor (field) {
+    this.#applyColor(field, 'valid')
+  }
+
+  /**
+   *
+   * @param field
+   */
+  activateInvalidBackgroundColor (field) {
+    this.#applyColor(field, 'invalid')
   }
 }
