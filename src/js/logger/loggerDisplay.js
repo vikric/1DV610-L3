@@ -1,4 +1,5 @@
 import { Logger } from './logger'
+import { DOMHandler } from '../domHandler'
 
 // 1 instance of logger instead of 1 for each inputfield.
 
@@ -19,7 +20,15 @@ export class LoggerDisplay {
       throw new Error('Missing arguement')
     }
     this.#logInstance = new Logger()
+    this.domHandler = new DOMHandler()
     this.#displayElement = displayElement
+  }
+
+  /**
+   *
+   */
+  initialize () {
+    this.#logInstance.initialize()
     this.startListener()
   }
 

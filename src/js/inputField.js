@@ -12,6 +12,7 @@ export class InputField {
   #inputID
   #startColor
   #animationController
+  #domHandler
   /**
    * Represents an input field with validation.
    *
@@ -23,8 +24,13 @@ export class InputField {
     }
     this.#inputID = inputID
     this.#validation = new Validation()
-    this.domHandler = new DOMHandler()
+    this.#domHandler = new DOMHandler()
+  }
 
+  /**
+   * Initializes the input field by setting its start color and adding event listeners.
+   */
+  Initialize () {
     this.getStartColor()
     this.#startListenerEvent()
   }
@@ -33,7 +39,7 @@ export class InputField {
    * Initializes the input listener for the input field.
    */
   #startListenerEvent () {
-    this.domHandler.createListener(this.#inputID, (event) => {
+    this.#domHandler.createEventListener(this.#inputID, (event) => {
       this.#validateField(event)
     })
   }
@@ -42,7 +48,7 @@ export class InputField {
    * Gets the initial color from the field.
    */
   getStartColor () {
-    const element = this.domHandler.returnHTMLElement(this.#inputID)
+    const element = this.#domHandler.returnHTMLElement(this.#inputID)
     this.#startColor = getComputedStyle(element).backgroundColor
     this.#animationController = new AnimationController(this.#startColor)
   }

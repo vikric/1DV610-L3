@@ -9,7 +9,7 @@ export class DOMHandler {
    * @param {string} inputID - The ID of the input element to attach the listener to.
    * @param {Function} callback - The callback function to execute when the input event is triggered.
    */
-  createListener (inputID, callback) {
+  createEventListener (inputID, callback) {
     if (!inputID) {
       throw new ErrorHandler('inputID')
     }
