@@ -1,6 +1,7 @@
 import { Validation } from './validation.js'
 import { AnimationController } from './animation/animationController.js'
 import { DOMListener } from './domListener.js'
+import { ErrorHandler } from './errorHandler.js'
 
 /**
  *
@@ -18,7 +19,7 @@ export class InputField {
    */
   constructor (inputID) {
     if (!inputID) {
-      throw new TypeError('Missing ID')
+      throw new ErrorHandler('InputID')
     }
     this.#inputID = inputID
     this.#validation = new Validation()
@@ -41,7 +42,11 @@ export class InputField {
    * Gets the initial color from the field.
    */
   getStartColor () {
-    this.#startColor = getComputedStyle(document.querySelector('#' + this.#inputID)).backgroundColor
+    const element = document.querySelector('#' + this.#inputID)
+    if (!element) {
+      throw new ErrorHandler('Element')
+    }
+    this.#startColor = getComputedStyle(element).backgroundColor
     this.#animationController = new AnimationController(this.#startColor)
   }
 
@@ -61,9 +66,11 @@ export class InputField {
 
   /**
    * Updates the user interface based on the validation state.
+   *
+   * @returns {*} The result of the animation controller's background color activation.
    */
   #updateUI () {
-    const field = this.getInputField()
+    const field = this.#getInputField()
     if (this.#valid) {
       return this.#animationController.activateValidBackgroundColor(field)
     }
@@ -89,7 +96,7 @@ export class InputField {
    *
    * @returns {Element} The input field element.
    */
-  getInputField () {
+  #getInputField () {
     return document.querySelector('#' + this.#inputID)
   }
 }

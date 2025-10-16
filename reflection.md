@@ -80,6 +80,20 @@ I use 125 max characters per line to make it easier to read as described in **Ho
 
 ## Chapter 6 Objects and Data Structures
 
+All methods that are only meant to be used internally are private to not unecessarly expose data and because other classes don't need to know how it works which is **The Law of Demeter**.
+Early on I had a **Train Wreck** with my LoggerDisplay class. I did not even consider it until I started this reflection.
+To reset the counter, you had to do the following
+```js
+// Train wreck since it calls the 
+const log = new LoggerDisplay(logger)
+log.logInstance.resetCounter()
+
+// Here a separate method is created in log so the loginstance is not exposed.
+const log = new LoggerDisplay(logger)
+log.resetCounter()
+
+```
+
 ## Chapter 7 Error Handling
 
 ## Chapter 8 Boundaries

@@ -1,3 +1,7 @@
+import { Logger } from './logger'
+
+// 1 instance of logger instead of 1 for each inputfield.
+
 /**
  *
  */
@@ -10,11 +14,11 @@ export class LoggerDisplay {
    * @param logInstance
    * @param displayElement
    */
-  constructor (logInstance, displayElement) {
-    if (!logInstance || !displayElement) {
+  constructor (displayElement) {
+    if (!displayElement) {
       throw new Error('Missing arguement')
     }
-    this.#logInstance = logInstance
+    this.#logInstance = new Logger()
     this.#displayElement = displayElement
     this.startListener()
   }
@@ -34,5 +38,19 @@ export class LoggerDisplay {
    */
   updateDisplay (count) {
     this.#displayElement.textContent = count
+  }
+
+  /**
+   *
+   */
+  resetCounter () {
+    return this.#logInstance.resetCounter()
+  }
+
+  /**
+   *
+   */
+  getCounter () {
+    return this.#logInstance.getCounter()
   }
 }
