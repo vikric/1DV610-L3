@@ -1,6 +1,6 @@
 import { Validation } from './validation.js'
 import { AnimationController } from './animation/animationController.js'
-import { DOMListener } from './domListener.js'
+import { DOMHandler } from './domHandler.js'
 import { ErrorHandler } from './errorHandler.js'
 
 /**
@@ -23,7 +23,7 @@ export class InputField {
     }
     this.#inputID = inputID
     this.#validation = new Validation()
-    this.domListener = new DOMListener()
+    this.domHandler = new DOMHandler()
 
     this.getStartColor()
     this.#startListenerEvent()
@@ -33,7 +33,7 @@ export class InputField {
    * Initializes the input listener for the input field.
    */
   #startListenerEvent () {
-    this.domListener.createListener(this.#inputID, (event) => {
+    this.domHandler.createListener(this.#inputID, (event) => {
       this.#validateField(event)
     })
   }
@@ -42,7 +42,8 @@ export class InputField {
    * Gets the initial color from the field.
    */
   getStartColor () {
-    const element = document.querySelector('#' + this.#inputID)
+    const element = this.domHandler.querySelector(this.#inputID)
+    /* const element = document.querySelector('#' + this.#inputID) */
     if (!element) {
       throw new ErrorHandler('Element')
     }

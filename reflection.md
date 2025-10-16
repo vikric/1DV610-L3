@@ -64,23 +64,22 @@ unfortunately it's hard to create **Meaningful Names** when using **Flag Argumen
 
 ## Chapter 4 Comments
 I do use JSDOC, which is **Mandated Comments** and I only use it because of eslint.
-During L2 and L3 I do not find the use of comments since they methods are quite small and easy to understand. It feels as if 
-you create clean code, comments are not needed as I dont need to **Explan Yourself in Code**.
+During L2 and L3 I do not find the use of comments since they methods are quite small and easy to understand. 
+It feels as if you create clean code, comments are not needed as I dont need to **Explan Yourself in Code**.
 However previous when using AI, I used comments because I would not understand 100% what they did
 if I went back 2 week later.
 
 
 ## Chapter 5 Formatting
 
-Since I've tried to more OOP, it results in more classes which in return make each class much shorter. So I have not 
-had a problem with **Vertical Formatting**.
-I have all methods in the order they are called. **Dependent Functions**
-One of the reasons I use Eslint is because of **Identation**
+Since I've tried to more OOP, it results in more classes which in return make each class much shorter. So I have not had a problem with **Vertical Formatting**.  
+I have all methods in the order they are called. **Dependent Functions**  
+One of the reasons I use Eslint is because of **Identation**.  
 I use 125 max characters per line to make it easier to read as described in **Horizonal Formatting**
 
 ## Chapter 6 Objects and Data Structures
 
-All methods that are only meant to be used internally are private to not unecessarly expose data and because other classes don't need to know how it works which is **The Law of Demeter**.
+All methods that are only meant to be used internally are private to not unecessarly expose data and because other classes don't need to know how it works which is **The Law of Demeter**.  
 Early on I had a **Train Wreck** with my LoggerDisplay class. I did not even consider it until I started this reflection.
 To reset the counter, you had to do the following
 ```js
@@ -95,6 +94,9 @@ log.resetCounter()
 ```
 
 ## Chapter 7 Error Handling
+I have used try & catch blocks before but did not really understand the importance of it until reading this chapter. **Use Exceptions Rather Than Return Codes** this is something I do because return codes adds so much more code.  
+I do not have a finally block in my **Try-Catch** but that would be a perfect spot to remove all created eventlisteners. I do however not know how to remove them in a good way since they are created with an abstract class.
+
 
 ## Chapter 8 Boundaries
 

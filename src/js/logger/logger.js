@@ -1,5 +1,5 @@
 /**
- *
+ * Creates a new Logger instance and starts the event listener.
  */
 export class Logger {
   #counter = 0
