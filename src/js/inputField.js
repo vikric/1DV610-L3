@@ -42,11 +42,7 @@ export class InputField {
    * Gets the initial color from the field.
    */
   getStartColor () {
-    const element = this.domHandler.querySelector(this.#inputID)
-    /* const element = document.querySelector('#' + this.#inputID) */
-    if (!element) {
-      throw new ErrorHandler('Element')
-    }
+    const element = this.domHandler.returnHTMLElement(this.#inputID)
     this.#startColor = getComputedStyle(element).backgroundColor
     this.#animationController = new AnimationController(this.#startColor)
   }

@@ -1,8 +1,5 @@
 # Reflection 
-Kodkvalitetskrav för betyg A-E
-Gå igenom all kod inklusive kod från laboration 2 (OBS!: Separat branch från den ni lämnat in i laboration 2) och uppdatera 
-enligt bokens clean code kapitel 2-11 och det vi diskuterat på föreläsningar och workshops. Skriv en kort (4-6 meningar) 
-reflektion för varje kapitel om hur just det kapitlet har påverkat eller inte påverkat din kod. Använd bokens termer. 
+om hur just det kapitlet har påverkat eller inte påverkat din kod. Använd bokens termer. 
 Ge exempel med läsbara screenshots från er kod till varje reflektion. Dokumentera detta till mig i ett separat dokument
  reflection.md där jag är mottagaren.
 
@@ -68,6 +65,19 @@ During L2 and L3 I do not find the use of comments since they methods are quite 
 It feels as if you create clean code, comments are not needed as I dont need to **Explan Yourself in Code**.
 However previous when using AI, I used comments because I would not understand 100% what they did
 if I went back 2 week later.
+Here is an very easy method where the comment doesn't really do anything.
+
+```js
+  /**
+   * Sets the color scheme for valid and invalid states.
+   *
+   * @param {{valid: string, invalid: string}} colors - The color configuration
+   */
+  setColor ({ valid, invalid }) {
+    this.#color.valid = valid
+    this.#color.invalid = invalid
+  }
+```
 
 
 ## Chapter 5 Formatting
@@ -75,7 +85,26 @@ if I went back 2 week later.
 Since I've tried to more OOP, it results in more classes which in return make each class much shorter. So I have not had a problem with **Vertical Formatting**.  
 I have all methods in the order they are called. **Dependent Functions**  
 One of the reasons I use Eslint is because of **Identation**.  
-I use 125 max characters per line to make it easier to read as described in **Horizonal Formatting**
+I use 125 max characters per line to make it easier to read as described in **Horizonal 
+Formatting**
+Just this short method shows how much easier the first method is the read, all because you have indentions.
+```js
+  #updateUI () {
+    const field = this.#getInputField()
+    if (this.#valid) {
+      return this.#animationController.activateValidBackgroundColor(field)
+    }
+    return this.#animationController.activateInvalidBackgroundColor(field)
+  }
+
+    #updateUI () {
+    const field = this.#getInputField()
+    if (this.#valid) {
+    return this.#animationController.activateValidBackgroundColor(field)
+    }
+    return this.#animationController.activateInvalidBackgroundColor(field)
+  }
+```
 
 ## Chapter 6 Objects and Data Structures
 
@@ -96,12 +125,39 @@ log.resetCounter()
 ## Chapter 7 Error Handling
 I have used try & catch blocks before but did not really understand the importance of it until reading this chapter. **Use Exceptions Rather Than Return Codes** this is something I do because return codes adds so much more code.  
 I do not have a finally block in my **Try-Catch** but that would be a perfect spot to remove all created eventlisteners. I do however not know how to remove them in a good way since they are created with an abstract class.
+```js
+//This is an ErrorHandler which can be used in multiple classes.
+export class ErrorHandler extends Error {
+
+  constructor (argName) {
+    super(`Missing argument: ${argName}`)
+    this.name = 'MissingArgumentError'
+  }
+}
+
+// Here it will throw an error if there isn't an element.
+  returnHTMLElement (elementID) {
+    const element = document.querySelector('#' + elementID)
+    if (!element) {
+      throw new ErrorHandler('Element')
+    }
+    return element
+  }
+```
 
 
 ## Chapter 8 Boundaries
+I have maintained **Clean Boundaries** throughout my code, particularly with my DomHandler and Animation classes. This separation of concerns makes both classes highly reusable for future projects and simplifies testing by isolating DOM manipulation to a single class.
+
+Through the creation of my module, I've implemented a wrapper pattern, this demonstrates effective **Use of Third-Party Code**. Users only need to use the public methods without understanding the underlying logic.
 
 ## Chapter 9 Unit Tests
 
-## Chapter 10 Classes
+I wish that I followed **The Three Laws of TDD** because that might make it faster for me to reach the point of my code I want. Instead I start coding and when I get the result, I create a tests for that result. Had I created the tests to begin with, it would probably go much faster. The tests I have in my module are **Clean Tests**, mostly because the methods are quite short.
 
-## Chapter 11 Emergence
+## Chapter 10 Classes
+This has been the most challenging about the assignment, mostly because I'm not very good at OOP. So it's hard for me take a class and break out what can be abstracted. I do however think Think I've managed to have **Encapsulation** in every class and to also keep them short. **Classes Should Be Small**.
+**The Single Responsibility Principle** is hard for me to decide. How far you should split up every class.
+
+## Chapter 11 Systems
+This chapter is about dividing a system in separate parts that handles 1 thing. Just like what I have done with my application. Validation handles my module that validates the input, same as DomHandler handles all DOM related data such as creating an eventlistener. However, I do see that I'm not following **Separate Constructing a System from Using It** because I don't know how.

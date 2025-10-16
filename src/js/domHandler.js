@@ -27,7 +27,7 @@ export class DOMHandler {
    * @param {string} elementID - The ID of the element to select.
    * @returns {Element} The DOM element with the given ID.
    */
-  querySelector (elementID) {
+  returnHTMLElement (elementID) {
     const element = document.querySelector('#' + elementID)
     if (!element) {
       throw new ErrorHandler('Element')
