@@ -32,13 +32,13 @@ export class InputField {
    */
   Initialize () {
     this.getStartColor()
-    this.#startListenerEvent()
+    this.#createValidateFieldListener()
   }
 
   /**
    * Initializes the input listener for the input field.
    */
-  #startListenerEvent () {
+  #createValidateFieldListener () {
     this.#domHandler.createEventListener(this.#inputID, (event) => {
       this.#validateField(event)
     })

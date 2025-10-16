@@ -161,3 +161,10 @@ This has been the most challenging about the assignment, mostly because I'm not 
 
 ## Chapter 11 Systems
 This chapter is about dividing a system in separate parts that handles 1 thing. Just like what I have done with my application. Validation handles my module that validates the input, same as DomHandler handles all DOM related data such as creating an eventlistener. However, I do see that I'm not following **Separate Constructing a System from Using It** because I don't know how.
+The example code is something I do not like because the values are hardcoded. I would have preferred to use an observer pattern but I do not know to implement it and don't have the time to learn how.
+```js
+
+    document.addEventListener('counterUpdated', (event) => {
+      this.updateDisplay(event.detail.counter)
+    })
+```

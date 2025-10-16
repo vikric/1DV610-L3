@@ -13,7 +13,7 @@ export class DOMHandler {
     if (!inputID) {
       throw new ErrorHandler('inputID')
     }
-    if (!inputID) {
+    if (!callback) {
       throw new ErrorHandler('Callback')
     }
     document.querySelector('#' + inputID).addEventListener('input', (event) => {

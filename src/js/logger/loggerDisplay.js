@@ -29,13 +29,14 @@ export class LoggerDisplay {
    */
   initialize () {
     this.#logInstance.initialize()
-    this.startListener()
+    this.listenCounterUpdatedEvent()
   }
 
+  sendCounterUpdatedEvent
   /**
    * Starts listening for 'counterUpdated' events and updates the display when triggered.
    */
-  startListener () {
+  listenCounterUpdatedEvent () {
     document.addEventListener('counterUpdated', (event) => {
       this.updateDisplay(event.detail.counter)
     })
