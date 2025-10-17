@@ -147,13 +147,40 @@ export class ErrorHandler extends Error {
 
 
 ## Chapter 8 Boundaries
-I have maintained **Clean Boundaries** throughout my code, particularly with my DomHandler and Animation classes. This separation of concerns makes both classes highly reusable for future projects and simplifies testing by isolating DOM manipulation to a single class.
+I have maintained **Clean Boundaries** throughout my code, particularly with my AnimationController and Animation classes. This separation of concerns makes both classes highly reusable for future projects and simplifies testing by isolating DOM manipulation to a single class.
 
 Through the creation of my module, I've implemented a wrapper pattern, this demonstrates effective **Use of Third-Party Code**. Users only need to use the public methods without understanding the underlying logic.
+```js
+  /**
+   * Resets the counter in the Logger instance.
+   *
+   * @returns {number} The value of the counter after reset.
+   */
+  resetCounter () {
+    return this.#logInstance.resetCounter()
+  }
+
+  /**
+   * Gets the current value of the counter from the Logger instance.
+   *
+   * @returns {number} The current value of the counter.
+   */
+  getCounter () {
+    return this.#logInstance.getCounter()
+  }
+```
 
 ## Chapter 9 Unit Tests
 
 I wish that I followed **The Three Laws of TDD** because that might make it faster for me to reach the point of my code I want. Instead I start coding and when I get the result, I create a tests for that result. Had I created the tests to begin with, it would probably go much faster. The tests I have in my module are **Clean Tests**, mostly because the methods are quite short.
+Below is test to validate the date format.
+```js
+test('returns valid when date have correct format', () => {
+  const result = validator.validateDateString('30/09/25')
+  expect(result.valid).toBe(true)
+  expect(result.message).toBe('✅ Date is valid')
+})
+```
 
 ## Chapter 10 Classes
 This has been the most challenging about the assignment, mostly because I'm not very good at OOP. So it's hard for me take a class and break out what can be abstracted. I do however think Think I've managed to have **Encapsulation** in every class and to also keep them short. **Classes Should Be Small**.
