@@ -1,7 +1,7 @@
 import { Validation } from './validation.js'
 import { AnimationController } from './animation/animationController.js'
-import { DOMHandler } from './domHandler.js'
-import { ErrorHandler } from './errorHandler.js'
+import { DOMHandler } from './middleware/domHandler.js'
+import { ErrorHandler } from './middleware/errorHandler.js'
 
 /**
  *
@@ -30,18 +30,9 @@ export class InputField {
   /**
    * Initializes the input field by setting its start color and adding event listeners.
    */
-  Initialize () {
+  initialize () {
     this.getStartColor()
     this.#createValidateFieldListener()
-  }
-
-  /**
-   * Initializes the input listener for the input field.
-   */
-  #createValidateFieldListener () {
-    this.#domHandler.createEventListener(this.#inputID, (event) => {
-      this.#validateField(event)
-    })
   }
 
   /**
@@ -54,13 +45,21 @@ export class InputField {
   }
 
   /**
+   * Initializes the input listener for the input field.
+   */
+  #createValidateFieldListener () {
+    this.#domHandler.createInputEventListener(this.#inputID, (event) => {
+      this.#validateField(event)
+    })
+  }
+
+  /**
    * Validates the input field based on the provided input.
    *
    * @param {Event} input - The input event from the input field.
    */
   #validateField (input) {
     this.#valid = this.#validation.isValid(input).valid
-
     this.#updateUI()
     if (this.#valid) {
       this.#sendValidFieldEvent()
@@ -81,6 +80,15 @@ export class InputField {
   }
 
   /**
+   * Retrieves the input field element based on the input ID.
+   *
+   * @returns {Element} The input field element.
+   */
+  #getInputField () {
+    return document.querySelector('#' + this.#inputID)
+  }
+
+  /**
    * Dispatches a custom event when the input field is valid.
    */
   #sendValidFieldEvent () {
@@ -92,14 +100,5 @@ export class InputField {
       }
     })
     document.dispatchEvent(event)
-  }
-
-  /**
-   * Retrieves the input field element based on the input ID.
-   *
-   * @returns {Element} The input field element.
-   */
-  #getInputField () {
-    return document.querySelector('#' + this.#inputID)
   }
 }

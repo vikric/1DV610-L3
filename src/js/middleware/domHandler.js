@@ -9,14 +9,28 @@ export class DOMHandler {
    * @param {string} inputID - The ID of the input element to attach the listener to.
    * @param {Function} callback - The callback function to execute when the input event is triggered.
    */
-  createEventListener (inputID, callback) {
+  createInputEventListener (inputID, callback) {
     if (!inputID) {
       throw new ErrorHandler('inputID')
     }
     if (!callback) {
       throw new ErrorHandler('Callback')
     }
+
     document.querySelector('#' + inputID).addEventListener('input', (event) => {
+      callback(event)
+    })
+  }
+
+  /**
+   * Creates a global event listener and calls the provided callback when events of the type happens.
+   *
+   * @param {string} type - The event type to listen for (e.g. 'custom-event').
+   * @param {Function} callback - Function to call when the event is dispatched; receives the Event object.
+   */
+  createEventListener (type, callback) {
+    document.addEventListener(type, (event) => {
+      console.log(event.detail)
       callback(event)
     })
   }

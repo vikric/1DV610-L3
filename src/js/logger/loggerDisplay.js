@@ -1,8 +1,7 @@
 import { Logger } from './logger'
-import { DOMHandler } from '../domHandler'
+import { ErrorHandler } from '../middleware/errorHandler'
 
 // 1 instance of logger instead of 1 for each inputfield.
-
 /**
  *
  */
@@ -17,28 +16,26 @@ export class LoggerDisplay {
    */
   constructor (displayElement) {
     if (!displayElement) {
-      throw new Error('Missing arguement')
+      throw new ErrorHandler('displayElement')
     }
     this.#logInstance = new Logger()
-    this.domHandler = new DOMHandler()
     this.#displayElement = displayElement
   }
 
   /**
-   *
+   * Initializes the logger and adding event listener.
    */
   initialize () {
     this.#logInstance.initialize()
-    this.listenCounterUpdatedEvent()
+    this.#listenCounterUpdatedEvent()
   }
 
-  sendCounterUpdatedEvent
   /**
    * Starts listening for 'counterUpdated' events and updates the display when triggered.
    */
-  listenCounterUpdatedEvent () {
+  #listenCounterUpdatedEvent () {
     document.addEventListener('counterUpdated', (event) => {
-      this.updateDisplay(event.detail.counter)
+      this.#updateDisplay(event.detail.counter)
     })
   }
 
@@ -47,7 +44,7 @@ export class LoggerDisplay {
    *
    * @param {number} count - The current value of the counter to display.
    */
-  updateDisplay (count) {
+  #updateDisplay (count) {
     this.#displayElement.textContent = count
   }
 

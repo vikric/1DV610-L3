@@ -158,9 +158,41 @@ I wish that I followed **The Three Laws of TDD** because that might make it fast
 ## Chapter 10 Classes
 This has been the most challenging about the assignment, mostly because I'm not very good at OOP. So it's hard for me take a class and break out what can be abstracted. I do however think Think I've managed to have **Encapsulation** in every class and to also keep them short. **Classes Should Be Small**.
 **The Single Responsibility Principle** is hard for me to decide. How far you should split up every class.
+I have worked with getting high **Cohesion** in my classes but it's been more difficult than I thought. 
+
+```js
+  constructor (startColor) {
+    this.#animation = new Animation()
+    this.#startColor = startColor
+  }
+
+
+  #applyColor (field, state) {
+    if (field.value.length === 0) {
+      field.style.backgroundColor = this.#startColor
+      return
+    }
+
+    const colors = {
+      valid: this.#animation.getValidBackGroundColor(),
+      invalid: this.#animation.getInvalidBackGroundColor()
+    }
+
+    field.style.background = colors[state]
+  }
+
+
+  activateValidBackgroundColor (field) {
+    this.#applyColor(field, 'valid')
+  }
+
+  activateInvalidBackgroundColor (field) {
+    this.#applyColor(field, 'invalid')
+  }
+```
 
 ## Chapter 11 Systems
-This chapter is about dividing a system in separate parts that handles 1 thing. Just like what I have done with my application. Validation handles my module that validates the input, same as DomHandler handles all DOM related data such as creating an eventlistener. However, I do see that I'm not following **Separate Constructing a System from Using It** because I don't know how.
+This chapter is about dividing a system in separate parts that handles 1 thing. Just like what I have done with my application. Validation handles my module that validates the input, same as DomHandler handles all DOM related data such as creating an eventlistener. I refactored my code to follow **Separate Constructing a System from Using It**.
 The example code is something I do not like because the values are hardcoded. I would have preferred to use an observer pattern but I do not know to implement it and don't have the time to learn how.
 ```js
 
