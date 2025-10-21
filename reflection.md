@@ -82,7 +82,8 @@ Here is an very easy method where the comment doesn't really do anything.
 
 ## Chapter 5 Formatting
 
-Since I've tried to more OOP, it results in more classes which in return make each class much shorter. So I have not had a problem with **Vertical Formatting**.  
+Since I've tried to more OOP, it results in more classes which in return make each class much shorter.
+So I have not had a problem with **Vertical Formatting**.  
 I have all methods in the order they are called. **Dependent Functions**  
 One of the reasons I use Eslint is because of **Identation**.  
 I use 125 max characters per line to make it easier to read as described in **Horizonal 
@@ -108,7 +109,8 @@ Just this short method shows how much easier the first method is the read, all b
 
 ## Chapter 6 Objects and Data Structures
 
-All methods that are only meant to be used internally are private to not unecessarly expose data and because other classes don't need to know how it works which is **The Law of Demeter**.  
+All methods that are only meant to be used internally are private to not unecessarly expose data and 
+because other classes don't need to know how it works which is **The Law of Demeter**.  
 Early on I had a **Train Wreck** with my LoggerDisplay class. I did not even consider it until I started this reflection.
 To reset the counter, you had to do the following
 ```js
@@ -123,8 +125,10 @@ log.resetCounter()
 ```
 
 ## Chapter 7 Error Handling
-I have used try & catch blocks before but did not really understand the importance of it until reading this chapter. **Use Exceptions Rather Than Return Codes** this is something I do because return codes adds so much more code.  
-I do not have a finally block in my **Try-Catch** but that would be a perfect spot to remove all created eventlisteners. I do however not know how to remove them in a good way since they are created with an abstract class.
+I have used try & catch blocks before but did not really understand the importance of it until reading this chapter.
+**Use Exceptions Rather Than Return Codes** this is something I do because return codes adds so much more code.  
+I do not have a finally block in my **Try-Catch** but that would be a perfect spot to remove all created eventlisteners.
+I do however not know how to remove them in a good way since they are created with an abstract class.
 ```js
 //This is an ErrorHandler which can be used in multiple classes.
 export class ErrorHandler extends Error {
@@ -147,9 +151,12 @@ export class ErrorHandler extends Error {
 
 
 ## Chapter 8 Boundaries
-I have maintained **Clean Boundaries** throughout my code, particularly with my AnimationController and Animation classes. This separation of concerns makes both classes highly reusable for future projects and simplifies testing by isolating DOM manipulation to a single class.
+I have maintained **Clean Boundaries** throughout my code, particularly with my AnimationController and Animation classes.
+This separation of concerns makes both classes highly reusable for future projects and
+simplifies testing by isolating DOM manipulation to a single class.
 
-Through the creation of my module, I've implemented a wrapper pattern, this demonstrates effective **Use of Third-Party Code**. Users only need to use the public methods without understanding the underlying logic.
+Through the creation of my module, I've implemented a wrapper pattern, this demonstrates effective 
+**Use of Third-Party Code**. Users only need to use the public methods without understanding the underlying logic.
 ```js
   /**
    * Resets the counter in the Logger instance.
@@ -172,7 +179,10 @@ Through the creation of my module, I've implemented a wrapper pattern, this demo
 
 ## Chapter 9 Unit Tests
 
-I wish that I followed **The Three Laws of TDD** because that might make it faster for me to reach the point of my code I want. Instead I start coding and when I get the result, I create a tests for that result. Had I created the tests to begin with, it would probably go much faster. The tests I have in my module are **Clean Tests**, mostly because the methods are quite short.
+I wish that I followed **The Three Laws of TDD** because that might make it faster for me
+to reach the point of my code I want. Instead I start coding and when I get the result, I create a tests for that result. 
+Had I created the tests to begin with, it would probably go much faster. The tests I have in my module are **Clean Tests**, 
+mostly because the methods are quite short.
 Below is test to validate the date format.
 ```js
 test('returns valid when date have correct format', () => {
@@ -183,7 +193,10 @@ test('returns valid when date have correct format', () => {
 ```
 
 ## Chapter 10 Classes
-This has been the most challenging about the assignment, mostly because I'm not very good at OOP. So it's hard for me take a class and break out what can be abstracted. I do however think Think I've managed to have **Encapsulation** in every class and to also keep them short. **Classes Should Be Small**.
+This has been the most challenging about the assignment, mostly because I'm not very good at OOP. 
+So it's hard for me take a class and break out what can be abstracted. 
+I do however think Think I've managed to have **Encapsulation** in every class and to also keep them short.
+ **Classes Should Be Small**.
 **The Single Responsibility Principle** is hard for me to decide. How far you should split up every class.
 I have worked with getting high **Cohesion** in my classes but it's been more difficult than I thought. 
 
@@ -219,8 +232,12 @@ I have worked with getting high **Cohesion** in my classes but it's been more di
 ```
 
 ## Chapter 11 Systems
-This chapter is about dividing a system in separate parts that handles 1 thing. Just like what I have done with my application. Validation handles my module that validates the input, same as DomHandler handles all DOM related data such as creating an eventlistener. I refactored my code to follow **Separate Constructing a System from Using It**.
-The example code is something I do not like because the values are hardcoded. I would have preferred to use an observer pattern but I do not know to implement it and don't have the time to learn how.
+This chapter is about dividing a system in separate parts that handles 1 thing.
+Just like what I have done with my application. Validation handles my module that validates the input,
+same as DomHandler handles all DOM related data such as creating an eventlistener.
+I refactored my code to follow **Separate Constructing a System from Using It**.
+The example code is something I do not like because the values are hardcoded.
+I would have preferred to use an observer pattern but I do not know to implement it and don't have the time to learn how.
 ```js
 
     document.addEventListener('counterUpdated', (event) => {
