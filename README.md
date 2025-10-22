@@ -47,3 +47,6 @@ If you are interested in adding more Inputfields, you can do it like this:
 const newField = new InputField('newFieldID')
 newField.initialize()
 ```
+
+## Testserver
+https://rickardssons.se/validator/
